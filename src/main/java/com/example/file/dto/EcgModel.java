@@ -13,7 +13,13 @@ public class EcgModel {
     private Long time;
     private Double leadI;
     private Double leadII;
-        private Double v1;
+
+    private Double leadIII;
+    private Double avR;
+    private Double avL;
+    private Double avF;
+
+    private Double v1;
     private Double v2;
     private Double v3;
     private Double v4;

@@ -51,62 +51,96 @@
                         return { 'x': obj.time, 'y': obj.leadI };
                 });
                 $('.title-display').text("Đạo trình leadI")
-                displayData(point, -0.5, 0.5)
+                displayData(point, -0.5, 0.5);
               }
               else if (type == 'leadII') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.leadII };
                 });
                 $('.title-display').text("Đạo trình leadII")
-                displayData(point, -3, 3)
+                displayData(point, -3, 3);
+              } else if (type == 'leadIII') {
+
+                  let point = data .map(obj => {
+                      return { 'x': obj.time, 'y': obj.leadIII };
+                  });
+
+                  $('.title-display').text("Đạo trình LeadIII")
+                  displayData(point, 1.5, 2.5);
+              } else if (type == 'avR') {
+
+                  let point = data .map(obj => {
+                      return { 'x': obj.time, 'y': obj.avR };
+                  });
+
+                  $('.title-display').text("Đạo trình avR")
+                  displayData(point, -1.8, 0);
+              }
+              else if (type == 'avL') {
+
+                  let point = data .map(obj => {
+                      return { 'x': obj.time, 'y': obj.avL };
+                  });
+
+                  $('.title-display').text("Đạo trình avR")
+                  displayData(point, -1.5, 0);
+              }
+              else if (type == 'avF') {
+
+                  let point = data .map(obj => {
+                      return { 'x': obj.time, 'y': obj.avF };
+                  });
+
+                  $('.title-display').text("Đạo trình avF")
+                  displayData(point, 1.5, 3);
               }
               else if (type == 'v1') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.v1 };
                 });
                 $('.title-display').text("Đạo trình v1")
-                displayData(point, -3, 3)
+                displayData(point, 1.2, 3.5);
               }
               else if (type == 'v2') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.v2 };
                 });
                 $('.title-display').text("Đạo trình v2")
-                displayData(point, -3, 3)
+                  displayData(point, 1.2, 3.5);
               }
               else if (type == 'v3') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.v3 };
                 });
                 $('.title-display').text("Đạo trình v3")
-                displayData(point, -3, 3)
+                  displayData(point, 1.2, 3.5);
               }
               else if (type == 'v4') {
                 $('.title-display').text("Đạo trình v4")
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.v4 };
                 });
-                displayData(point, -3, 3)
+                  displayData(point, 1.2, 3.5);
               }
               else if (type == 'v5') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.v5 };
                 });
                 $('.title-display').text("Đạo trình v5")
-                displayData(point, -3, 3)
+                  displayData(point, 1.2, 3.5);
               }
               else if (type == 'v6') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.v6 };
                 });
                 $('.title-display').text("Đạo trình v6")
-                displayData(point, -3, 3)
+                  displayData(point, 1.2, 3.5);
               }
 
         });
     });
 
-     function displayData(point, maxY, minY) {
+     function displayData(point, minY, maxY) {
                         // Import data Generator 
                 const {
                       lightningChart,

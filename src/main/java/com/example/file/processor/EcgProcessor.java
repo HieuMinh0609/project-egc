@@ -74,12 +74,18 @@ public class EcgProcessor {
             model.setTime(Long.parseLong(convertData(row.getCell(0))));
             model.setLeadI(Double.parseDouble(convertData(row.getCell(1))));
             model.setLeadII(Double.parseDouble(convertData(row.getCell(2))));
-            model.setV1(Double.parseDouble(convertData(row.getCell(3))));
-            model.setV2(Double.parseDouble(convertData(row.getCell(4))));
-            model.setV3(Double.parseDouble(convertData(row.getCell(5))));
-            model.setV4(Double.parseDouble(convertData(row.getCell(6))));
-            model.setV5(Double.parseDouble(convertData(row.getCell(7))));
-            model.setV6(Double.parseDouble(convertData(row.getCell(8))));
+
+            model.setLeadIII(Double.parseDouble(convertData(row.getCell(3))));
+            model.setAvR(Double.parseDouble(convertData(row.getCell(4))));
+            model.setAvL(Double.parseDouble(convertData(row.getCell(5))));
+            model.setAvF(Double.parseDouble(convertData(row.getCell(6))));
+
+            model.setV1(Double.parseDouble(convertData(row.getCell(7))));
+            model.setV2(Double.parseDouble(convertData(row.getCell(8))));
+            model.setV3(Double.parseDouble(convertData(row.getCell(9))));
+            model.setV4(Double.parseDouble(convertData(row.getCell(10))));
+            model.setV5(Double.parseDouble(convertData(row.getCell(11))));
+            model.setV6(Double.parseDouble(convertData(row.getCell(12))));
         return model;
     }
 
