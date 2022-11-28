@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/static/assets/img/favicon.png" rel="icon">
+    <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/static/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/static/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <link href="/static/assets/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<style>
+    iframe {
+        width: 100%;
+        height: 350px;
+    }
+</style>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">NiceAdmin</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item d-block d-lg-none">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                </a>
+            </li><!-- End Search Icon-->
+
+            <li class="nav-item dropdown pe-3">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="/perform_logout">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+
+        </ul>
+    </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/home">
+                <i class="bi bi-grid"></i>
+                <span>Trang chủ</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/egc">
+                <i class="bi bi-menu-button-wide"></i>
+                <span>EGC</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/contact">
+                <i class="bi bi-journal-text"></i>
+                <span>Liên hệ</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+    </ul>
+
+</aside><!-- End Sidebar-->
+
+<main id="main" class="main" style=" min-height: 100vh; ">
+        <div class="container">
+            <form method="POST" enctype="multipart/form-data" id="formImport">
+
+                <label for="fullName">Họ và tên</label>
+                <input id="fullName" class="form-control" type="text" name="fullName" >
+
+                <label class=" mt-3" for="fileUpload">Tải file</label>
+                <input id="fileUpload" class="form-control" type="file" name="file" accept=".xls,.xlsx">
+
+                <button type="button" class="btn btn-warning mt-3" onclick="uploadFile()">Tải lên</button>
+            </form>
+        </div>
+
+        <div class="container-fluid mt-2">
+            <div class="mt-5">
+                <h4 style="font-weight: 700" id="text-full-name"></h4>
+            </div>
+             <div class="mt-3">
+                 <div class="row ">
+                     <div class="col-md-6">
+                         <iframe src="" id="target_1"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_2"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_3"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_4"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_5"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_6"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_7"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_8"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_9"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_10"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_11"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_12"></iframe>
+                     </div>
+                     <div class="col-md-6">
+                         <iframe src="" id="target_13"></iframe>
+                     </div>
+                 </div>
+
+        </div>
+    </div>
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="/static/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/assets/vendor/chart.js/chart.min.js"></script>
+<script src="/static/assets/vendor/echarts/echarts.min.js"></script>
+<script src="/static/assets/vendor/quill/quill.min.js"></script>
+<script src="/static/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/static/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="/static/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/static/assets/js/main.js"></script>
+
+<script>
+
+    function uploadFile() {
+
+        if(!$('#fileUpload').val() || $('#fullName').val() == '') {
+            alert("Lỗi !Bạn chưa chọn file hoặc chưa điền tên người dùng !")
+            return;
+        }
+
+        var form = $('#formImport')[0];
+        var formData = new FormData(form);
+        formData.append('multipartFile', $('#fileUpload')[0].files[0]);
+        $.ajax({
+            url: '/api/import',
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            beforeSend: function () {
+
+            },
+            success: function (res) {
+
+                alert("Thành công","Import thành công !");
+
+                $("#text-full-name").text("Họ và tên : "+$('#fullName').val())
+
+                $("#target_1").attr("src", "/admin/display-data?type=leadI&fileName="+res);
+                $("#target_2").attr("src", "/admin/display-data?type=leadII&fileName="+res);
+
+                $("#target_3").attr("src", "/admin/display-data?type=leadIII&fileName="+res);
+                $("#target_4").attr("src", "/admin/display-data?type=avR&fileName="+res);
+                $("#target_5").attr("src", "/admin/display-data?type=avL&fileName="+res);
+                $("#target_6").attr("src", "/admin/display-data?type=avF&fileName="+res);
+
+                $("#target_7").attr("src", "/admin/display-data?type=v1&fileName="+res);
+                $("#target_8").attr("src", "/admin/display-data?type=v2&fileName="+res);
+                $("#target_9").attr("src", "/admin/display-data?type=v3&fileName="+res);
+                $("#target_10").attr("src", "/admin/display-data?type=v4&fileName="+res);
+                $("#target_11").attr("src", "/admin/display-data?type=v5&fileName="+res);
+                $("#target_12").attr("src", "/admin/display-data?type=v6&fileName="+res);
+
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Thất bại Import thất bại !")
+            }
+
+        });
+    };
+
+
+
+</script>
+
+</body>
+
+</html>

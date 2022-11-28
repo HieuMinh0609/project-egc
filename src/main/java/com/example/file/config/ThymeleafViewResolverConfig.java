@@ -32,12 +32,6 @@ public  class ThymeleafViewResolverConfig implements WebMvcConfigurer {
         return templateResolver;
     }
 
-    @Bean
-    public LocaleResolver localeResolver() {
-        var slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(new Locale("vi"));
-        return slr;
-    }
 
     @Bean
     @Description("Thymeleaf template engine with Spring integration")
@@ -70,7 +64,8 @@ public  class ThymeleafViewResolverConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/admin/static/**").addResourceLocations("classpath:/static/").setCachePeriod(31556926);
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/").setCachePeriod(31556926);
+        registry.addResourceHandler("/admin/assets/**").addResourceLocations("classpath:/static/assets/").setCachePeriod(31556926);
     }
 
 }

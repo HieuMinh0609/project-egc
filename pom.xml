@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>PostONP_Backend_UI</artifactId>
+    <artifactId>project-egc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PostONP_Backend_UI</name>
-    <description>PostONP_Backend_UI</description>
-    <packaging>jar</packaging>
+    <name>project-egc</name>
+    <description>project-egc</description>
+    <packaging>war</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,6 +30,12 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>${spring.poi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.2.15.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -57,12 +63,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>5.2.15.RELEASE</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
@@ -81,10 +81,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
             <optional>true</optional>
+            <scope>runtime</scope>
         </dependency>
 
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

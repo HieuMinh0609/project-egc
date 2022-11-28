@@ -13,6 +13,16 @@ public class HomeController {
         return "templates/index.html";
     }
 
+    @GetMapping("/egc")
+    public String egc() {
+        return "templates/egc.html";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "templates/contact.html";
+    }
+
     @GetMapping("/display-data")
     public String display() {
         return "templates/display-data.html";
