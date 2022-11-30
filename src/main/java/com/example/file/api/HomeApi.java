@@ -8,6 +8,7 @@ import groovyjarjarpicocli.CommandLine;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class HomeApi {
     }
 
     @GetMapping("/read")
-    public List<EcgModel> readData(@RequestParam String nameFile) {
+    public List<EcgModel> readData(@RequestParam String nameFile) throws IOException {
         return processor.readFileExcel(nameFile);
     }
 
