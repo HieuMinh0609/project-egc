@@ -6,11 +6,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * @author: Do Dong Duc
- *
- * Aug 23, 2021
- */
 
 @Getter @Setter
 @NoArgsConstructor

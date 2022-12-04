@@ -9,5 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileRequestModel {
 
     private MultipartFile multipartFile;
-
+    private String userName;
+    private String phoneName;
 }

@@ -1,23 +1,25 @@
 package com.example.file.processor;
 
-import com.example.file.dto.EcgModel;
+import com.example.file.dto.DataModel;
 import com.example.file.dto.FileRequestModel;
+import com.example.file.entity.Users;
+import com.example.file.service.DataService;
+import com.example.file.service.UserService;
 import com.example.file.uitils.UploadUtils;
-import com.monitorjbl.xlsx.StreamingReader;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
+import javax.transaction.Transactional;
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class EcgProcessor {
@@ -26,26 +28,38 @@ public class EcgProcessor {
     private String uploadFolder;
 
     private UploadUtils uploadUtils;
+    private UserService userService;
+    private DataService dataService;
 
-    private static List<EcgModel> ecgModels = new ArrayList<>();
+    private static List<DataModel> ecgModels = new ArrayList<>();
 
-    public EcgProcessor(UploadUtils uploadUtils) {
+    public EcgProcessor(UploadUtils uploadUtils, UserService userService, DataService dataService) {
         this.uploadUtils = uploadUtils;
+        this.userService = userService;
+        this.dataService = dataService;
     }
 
     private static final String MESSAGE_ERROR = "Có lỗi xảy ra";
-    private static final Integer CHUNK_SIZE = 2000;
 
-    public String uploadFileExcel(FileRequestModel fileRequestModel) throws Exception {
+
+    @Transactional
+    public Long uploadFileExcel(FileRequestModel fileRequestModel) throws Exception {
         if (!fileRequestModel.getMultipartFile().isEmpty()) {
             var fileName = uploadUtils.saveFile(fileRequestModel.getMultipartFile(), uploadFolder);
-            return fileName;
+
+           Users user = userService.save(fileRequestModel.getUserName(), fileRequestModel.getPhoneName());
+
+           List<DataModel> dataModels = getData(fileName, uploadFolder);
+           dataService.saveAll(dataModels, user.getId());
+
+            return user.getId();
+
         } else throw new Exception(MESSAGE_ERROR);
     }
 
 
-    private List<EcgModel> getData(String fileName, String uploadFolder) throws IOException {
-        var data = new ArrayList<EcgModel>();
+    private List<DataModel> getData(String fileName, String uploadFolder) throws IOException {
+        var data = new ArrayList<DataModel>();
         File file = new File(uploadFolder + fileName);
         Integer index = 0;
         Workbook workbook = WorkbookFactory.create(file);
@@ -67,39 +81,22 @@ public class EcgProcessor {
         return data;
     }
 
-    private EcgModel mapRow(Row row) {
-        var model = new EcgModel();
-            model.setTime(Long.parseLong(getCellValue(row.getCell(0))));
-            model.setLeadI(Double.parseDouble(getCellValue(row.getCell(1))));
-            model.setLeadII(Double.parseDouble(getCellValue(row.getCell(2))));
-
-            model.setLeadIII(Double.parseDouble(getCellValue(row.getCell(3))));
-            model.setAvR(Double.parseDouble(getCellValue(row.getCell(4))));
-            model.setAvL(Double.parseDouble(getCellValue(row.getCell(5))));
-            model.setAvF(Double.parseDouble(getCellValue(row.getCell(6))));
-
-            model.setV1(Double.parseDouble(getCellValue(row.getCell(7))));
-            model.setV2(Double.parseDouble(getCellValue(row.getCell(8))));
-            model.setV3(Double.parseDouble(getCellValue(row.getCell(9))));
-            model.setV4(Double.parseDouble(getCellValue(row.getCell(10))));
-            model.setV5(Double.parseDouble(getCellValue(row.getCell(11))));
-            model.setV6(Double.parseDouble(getCellValue(row.getCell(12))));
+    private DataModel mapRow(Row row) {
+        var model =  DataModel.builder()
+            .time(Long.parseLong(getCellValue(row.getCell(0))))
+            .leadI(new BigDecimal(getCellValue(row.getCell(1))))
+            .leadII(new BigDecimal(getCellValue(row.getCell(2))))
+            .leadIII(new BigDecimal(getCellValue(row.getCell(3))))
+            .avR(new BigDecimal(getCellValue(row.getCell(4))))
+            .avL(new BigDecimal(getCellValue(row.getCell(5))))
+            .avF(new BigDecimal(getCellValue(row.getCell(6))))
+            .v1(new BigDecimal(getCellValue(row.getCell(7))))
+            .v2(new BigDecimal(getCellValue(row.getCell(8))))
+            .v3(new BigDecimal(getCellValue(row.getCell(9))))
+            .v4(new BigDecimal(getCellValue(row.getCell(10))))
+            .v5(new BigDecimal(getCellValue(row.getCell(11))))
+            .v6(new BigDecimal(getCellValue(row.getCell(12)))).build();
         return model;
-    }
-
-    private String convertData(Cell value) {
-        if (Objects.isNull(value)) return null;
-        return StringUtils.isBlank(value.getStringCellValue()) ? null: value.getStringCellValue().trim();
-    }
-
-    public List<EcgModel> readFileExcel(String nameFile) throws IOException {
-
-        if (ecgModels.size() < 1) {
-            var list = getData(nameFile, uploadFolder);
-            ecgModels =  list;
-            return list;
-        } else return ecgModels;
-
     }
 
     public String getCellValue(Cell cell) {

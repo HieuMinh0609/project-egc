@@ -7,7 +7,7 @@
     <!-- Automatically support high DPI devices -->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://unpkg.com/@arction/lcjs@3.4.0/dist/lcjs.iife.js"></script>
+    <script src="https://unpkg.com/@arction/lcjs@3.3.3/dist/lcjs.iife.js"></script>
     <script src="https://unpkg.com/@arction/xydata@1.4.0/dist/xydata.iife.js"></script>
     
     <style>
@@ -42,10 +42,10 @@
 <script>
 
     $( document ).ready(function() {
-        let fileName = getUrlParameter('fileName');
+        let userId = getUrlParameter('userId');
         let type = getUrlParameter('type');
 
-        fetch(window.location.origin+'/api/read?nameFile='+fileName).then((r) => r.json()).then((data) => {
+        fetch(window.location.origin+'/api/data/'+userId).then((r) => r.json()).then((data) => {
               if (type == 'leadI') {
                 let point = data .map(obj => {
                         return { 'x': obj.time, 'y': obj.leadI };
