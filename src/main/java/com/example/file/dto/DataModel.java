@@ -13,7 +13,7 @@ public class DataModel {
 
     private Long id;
 
-    private Long time;
+    private BigDecimal time;
     private BigDecimal leadI;
     private BigDecimal leadII;
 

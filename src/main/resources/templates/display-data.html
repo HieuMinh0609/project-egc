@@ -82,7 +82,7 @@
                       return { 'x': obj.time, 'y': obj.avL };
                   });
 
-                  $('.title-display').text("Đạo trình avR")
+                  $('.title-display').text("Đạo trình avL")
                   displayData(point, -1.5, 0);
               }
               else if (type == 'avF') {
@@ -181,8 +181,8 @@
                   .setScrollStrategy(AxisScrollStrategies.regressive)
 
               chart.getDefaultAxisX()
-                  .setTitle('milliseconds')
-                  .setInterval(0, 1000)
+                  .setTitle('seconds')
+                  .setInterval(0, 1)
                   .setScrollStrategy(AxisScrollStrategies.progressive)
 
               

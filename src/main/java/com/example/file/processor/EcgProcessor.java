@@ -83,7 +83,7 @@ public class EcgProcessor {
 
     private DataModel mapRow(Row row) {
         var model =  DataModel.builder()
-            .time(Long.parseLong(getCellValue(row.getCell(0))))
+            .time(new BigDecimal(getCellValue(row.getCell(0))))
             .leadI(new BigDecimal(getCellValue(row.getCell(1))))
             .leadII(new BigDecimal(getCellValue(row.getCell(2))))
             .leadIII(new BigDecimal(getCellValue(row.getCell(3))))

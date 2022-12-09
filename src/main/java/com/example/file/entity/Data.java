@@ -19,7 +19,7 @@ public class Data implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long time;
+    private BigDecimal time;
     private BigDecimal leadI;
     private BigDecimal leadII;
 
